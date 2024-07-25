@@ -14,4 +14,4 @@ jobs:
     - name: use checkout action
       uses: actions/checkout@v4
     - name: check file list
-      run: cat README.md
+      run: tree
