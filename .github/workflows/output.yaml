@@ -4,6 +4,8 @@ on: push
 jobs:
   create-output:
     runs-on: ubuntu-latest
+    outputs:
+      test2: ${{ steps.check-output.outputs.test }}
     steps:
     - name: echo output
       id: check-output  # 하나의 job에서 사용하는 output들의 id는 중복되지 않도록 해야함
@@ -12,3 +14,10 @@ jobs:
     - name: check output
       run: |
         echo ${{ steps.check-output.outputs.test }}
+
+  get-output:
+    needs: [create-output]
+    runs-on: ubuntu-latest
+    steps:
+    - name: get output
+      run: echo ${{ needs.create-output.outputs.test2 }}
