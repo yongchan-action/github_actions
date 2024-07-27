@@ -1,0 +1,14 @@
+name: output
+on: push
+
+jobs:
+  create-output:
+    runs-on: ubuntu-latest
+    steps:
+    - name: echo output
+      id: check-output  # 하나의 job에서 사용하는 output들의 id는 중복되지 않도록 해야함
+      run: |
+        echo "test=hello" >> $GITHUB_OUTPUT
+    - name: check output
+      run: |
+        echo ${{ steps.check-output.outputs.test }}
