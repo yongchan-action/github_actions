@@ -4,28 +4,28 @@ on:
     paths:
     - 'my-app/**'
 
-  jobs:
-    cache:
-      runs-on: ubuntu-latest
-      steps:
-      - name: checkout
-        uses: actions/checkout@v4
-      - name: setup-node
-        uses: actions/cache@v3
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
-      - name:
-        run: |
-          cd my-app
-          npm ci
-      - name:
-        run: |
-          cd my-app
-          npm ci
-      - name:
-        run: |
-          cd my-app
-          npm run build
+jobs:
+  cache:
+    runs-on: ubuntu-latest
+    steps:
+    - name: checkout
+      uses: actions/checkout@v4
+    - name: setup-node
+      uses: actions/cache@v3
+      with:
+        path: ~/.npm
+        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-node-
+    - name:
+      run: |
+        cd my-app
+        npm ci
+    - name:
+      run: |
+        cd my-app
+        npm ci
+    - name:
+      run: |
+        cd my-app
+        npm run build
