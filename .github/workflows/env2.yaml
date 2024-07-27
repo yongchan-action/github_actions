@@ -1,0 +1,10 @@
+name: var-2
+on: push
+
+jobs:
+  get-env:
+    runs-on: ubuntu-latest
+    steps:
+    - name: get var
+      run: echo ${{ vars.level }} # Settings > Security > Secrets and variables > Actions > Variables > Repository variables 에서 설정
+  
