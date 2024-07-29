@@ -23,5 +23,5 @@ jobs:
       if: contains('github actions', 'act')
       run: echo "git"
     - name: contains
-      if: contains('github actions', 'git')
+      if: contains('github, actions', 'git')
       run: echo "git"
