@@ -47,6 +47,7 @@ jobs:
                     "short": true,
                     "value": "${{ needs.get-keyword.outputs.level }} level issue"
                   }
+                ]
               }
             ]
           }
