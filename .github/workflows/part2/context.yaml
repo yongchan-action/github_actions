@@ -13,3 +13,5 @@ jobs:
       run: |
         echo ${{ github.repository }}
         echo ${{ github.event_name }}
+        echo ${{ github.sha }}
+        echo ${{ github.sha::7 }}
