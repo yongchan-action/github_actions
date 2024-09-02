@@ -9,3 +9,24 @@ spec:
   - name: container
     image: tmkube/app:v1
   terminationGracePeriodSeconds: 0
+
+
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: replica1
+spec:
+  replicas: 1
+  selector: 
+    matchLabels:
+      type: web
+  template:
+    metadata:
+      name: pod1
+      labels:
+        type: web
+    spec:
+      containers:
+      - name: container
+        image: tmkube/app:v1
+      terminationGracePeriodSeconds: 0
