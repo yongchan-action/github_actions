@@ -1,0 +1,95 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-shopping
+  labels:
+    category: shopping
+spec:
+  containers:
+  - name: container
+    image: kubetm/shopping
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: svc-shopping
+spec:
+  selector:
+    category: shopping
+  ports:
+  - port: 8080
+
+---
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-customer
+  labels: 
+    category: customer
+spec:
+  containers:
+  - name: container
+    image: kubetm/customer
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: svc-customer
+spec:
+  selector: 
+    category: customer
+  ports:
+  - port: 8080
+
+---
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-order
+  labels: 
+    category: order
+spec:
+  containers:
+  - name: container
+    image: kubetm/order
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: svc-order
+spec:
+  selector: 
+    category: order
+  ports:
+  - port: 8080
+
+---
+
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: service-loadbalancing
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /
+        backend:
+          serviceName: svc-shopping
+          servicePort: 8080
+      - path: /customer
+        backend:
+          serviceName: svc-customer
+          servicePort: 8080
+      - path: /order
+        backend:
+          serviceName: svc-order
+          servicePort: 8080
