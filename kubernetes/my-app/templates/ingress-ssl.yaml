@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: https:
+spec:
+  tls:
+  - hosts:
+    - www.mydomain.com
+    secretName: secret-https
+  rules:
+    - host: www.mydomain.com
+      http:
+        paths:
+        - backend:
+          serviceName: svc-https
+          servicePort: 8080
+
